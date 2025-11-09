@@ -28,7 +28,7 @@ return {
 		db.setup({
 			theme = "hyper",
 			config = {
-				header = header, -- ✅ Correct "NEOVIM" banner
+				header = header, -- Correct "NEOVIM" banner
 				center = center,
 				footer = footer,
 				shortcut_type = "icon",
