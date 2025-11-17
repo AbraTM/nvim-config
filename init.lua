@@ -15,6 +15,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Enable Clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- Plugins Loaded
 require("lazy").setup("plugins")
 
