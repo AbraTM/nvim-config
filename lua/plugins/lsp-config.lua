@@ -14,6 +14,15 @@ return {
 	},
 
 	config = function()
+		-- Suppress the sign_define warning
+		local orig_notify = vim.notify
+		vim.notify = function(msg, ...)
+			if msg:match("sign_define") then
+				return
+			end
+			orig_notify(msg, ...)
+		end
+
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
 		local lspkind = require("lspkind")
@@ -199,6 +208,7 @@ return {
 				-- Diagnostics
 				vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 				vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+				vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- Show error details
 			end,
 		})
 
@@ -223,5 +233,8 @@ return {
 				prefix = "",
 			},
 		})
+
+		-- Restore normal notifications
+		vim.notify = orig_notify
 	end,
 }
